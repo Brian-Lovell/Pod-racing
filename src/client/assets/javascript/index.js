@@ -324,9 +324,11 @@ async function getTracks() {
 	// GET request to `${SERVER}/api/tracks`
 	try {
 		const res = await fetch(`${SERVER}/api/tracks`, {
-			method: 'GET',
-			body: JSON.stringify(data)
+			method: 'GET'
 		})
+		.then((res) => res.json())
+		console.log(res)
+		return res
 
 
 	} catch(err) {
@@ -339,8 +341,8 @@ async function getRacers() {
 	try {
 		const res = await fetch(`${SERVER}/api/cars`, {
 			method: 'GET',
-			body: JSON.stringify(data)
 		})
+		return res
 
 
 	} catch(err) {
@@ -368,8 +370,8 @@ async function getRace(id) {
 	try {
 		const res = await fetch(`${SERVER}/api/races/${id}`, {
 			method: 'GET',
-			body: JSON.stringify(data)
 		})
+		return res
 
 
 	} catch(err) {
