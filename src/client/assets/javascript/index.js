@@ -342,6 +342,8 @@ async function getRacers() {
 		const res = await fetch(`${SERVER}/api/cars`, {
 			method: 'GET',
 		})
+		.then((res) => res.json())
+		console.log(res)
 		return res
 
 
@@ -371,6 +373,8 @@ async function getRace(id) {
 		const res = await fetch(`${SERVER}/api/races/${id}`, {
 			method: 'GET',
 		})
+		.then((res) => res.json())
+		console.log(res)
 		return res
 
 
