@@ -320,12 +320,32 @@ function defaultFetchOpts() {
 
 // TODO - Make a fetch call (with error handling!) to each of the following API endpoints 
 
-function getTracks() {
+async function getTracks() {
 	// GET request to `${SERVER}/api/tracks`
+	try {
+		const res = await fetch(`${SERVER}/api/tracks`, {
+			method: 'GET',
+			body: JSON.stringify(data)
+		})
+
+
+	} catch(err) {
+		console.log(err)
+	}
 }
 
-function getRacers() {
+async function getRacers() {
 	// GET request to `${SERVER}/api/cars`
+	try {
+		const res = await fetch(`${SERVER}/api/cars`, {
+			method: 'GET',
+			body: JSON.stringify(data)
+		})
+
+
+	} catch(err) {
+		console.log(err)
+	}
 }
 
 function createRace(player_id, track_id) {
@@ -343,8 +363,18 @@ function createRace(player_id, track_id) {
 	.catch(err => console.log("Problem with createRace request::", err))
 }
 
-function getRace(id) {
+async function getRace(id) {
 	// GET request to `${SERVER}/api/races/${id}`
+	try {
+		const res = await fetch(`${SERVER}/api/races/${id}`, {
+			method: 'GET',
+			body: JSON.stringify(data)
+		})
+
+
+	} catch(err) {
+		console.log(err)
+	}
 }
 
 function startRace(id) {
