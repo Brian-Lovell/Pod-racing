@@ -85,7 +85,7 @@ async function handleCreateRace() {
 
 	// TODO - update the store with the race id
 	// For the API to work properly, the race id should be race id - 1
-	store.race_id = race.ID
+	store.race_id = race.ID - 1;
 	console.log(store)
 	
 	// The race has been created, now start the countdown
@@ -404,7 +404,7 @@ function startRace(id) {
 		method: 'POST',
 		...defaultFetchOpts(),
 	})
-	.then(res => res.json())
+	// .then(res => res.json())
 	.catch(err => console.log("Problem with getRace request::", err))
 }
 
