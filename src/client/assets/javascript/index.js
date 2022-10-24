@@ -81,14 +81,12 @@ async function handleCreateRace() {
 	renderAt('#race', renderRaceStartView(track, player))
 
 	// const race = TODO - invoke the API call to create the race, then save the result
-	const race = createRace(player,track)
-
-	console.log(race)
+	const race = await createRace(player,track)
 
 	// TODO - update the store with the race id
 	// For the API to work properly, the race id should be race id - 1
-	store.race_id = race
-	console.log(store.race_id)
+	store.race_id = race.ID
+	console.log(store)
 	
 	// The race has been created, now start the countdown
 	// TODO - call the async function runCountdown
@@ -140,7 +138,7 @@ async function runCountdown() {
 					clearInterval(countID)}
 			}
 			// TODO - if the countdown is done, clear the interval, resolve the promise, and return
-			resolve
+			Promise.resolve
 		})
 	} catch(error) {
 		console.log(error);
