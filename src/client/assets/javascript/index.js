@@ -100,6 +100,7 @@ async function handleCreateRace() {
 }
 
 async function runRace(raceID) {
+	try {
 	return new Promise(resolve => {
 	// TODO - use Javascript's built in setInterval method to get race info every 500ms	
 		let raceInterval = setInterval(() => getRace(raceID),500)
@@ -128,6 +129,9 @@ async function runRace(raceID) {
 	*/
 	})
 	// remember to add error handling for the Promise
+	} catch(error) {
+		console.log(error)
+	}
 }
 
 async function runCountdown() {
