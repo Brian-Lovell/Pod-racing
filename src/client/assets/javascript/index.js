@@ -319,7 +319,8 @@ function resultsView(positions) {
 
 function raceProgress(positions) {
 	console.log('positions', positions)
-	let userPlayer = positions.find(e => e.id === store.player_id)
+	console.log('positions.id', positions.id)
+	let userPlayer = positions.find(e => e.id == store.player_id)
 	console.log('userPlayer:', userPlayer)
 	userPlayer.driver_name += " (you)"
 
