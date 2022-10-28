@@ -155,11 +155,14 @@ async function runCountdown() {
 
 			// run this DOM manipulation to decrement the countdown for the user
 			function updateCount() {
+				console.log('updateCount has run')
 				document.getElementById('big-numbers').innerHTML = --timer
 				// TODO - if the countdown is done, clear the interval, resolve the promise, and return
 				if (timer <= 0) {
+					console.log('Timer has hit 0')
 					clearInterval(countID)}
 					resolve()
+					return
 			}			
 		})
 	} catch(error) {
