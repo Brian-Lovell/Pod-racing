@@ -99,14 +99,9 @@ async function handleCreateRace() {
 }
 
 async function runRace() {
-	console.log('runRace function running.')
 	try {
 		return new Promise(resolve => {
-
-			const raceInterval = setInterval(updateRace(),500)
-
-			async function updateRace() {
-
+			const raceInterval = setInterval(async () => {
 				const res = await getRace(store.race_id)
 
 				if (res.status == 'in-progress') {
@@ -115,12 +110,11 @@ async function runRace() {
 				if (res.status == 'finished') {
 					clearInterval(raceInterval)
 					renderAt('#race', resultsView(res.positions))
-					resolve(res)
+					resolve()
 				}
-			}
-	
-
+			},500)
 		})
+
 	} catch(error) {
 		console.log(error)
 	}
