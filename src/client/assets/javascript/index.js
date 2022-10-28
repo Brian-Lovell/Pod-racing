@@ -82,8 +82,8 @@ async function handleCreateRace() {
 		renderAt('#race', renderRaceStartView(track, player))
 
 	})
-	// const race = await createRace(store.player_id,store.track_id)
-	// store.race_id = race.ID - 1;
+	const race = await createRace(store.player_id,store.track_id)
+	store.race_id = race.ID - 1;
 	
 	// console.log(store)
 
@@ -93,15 +93,11 @@ async function handleCreateRace() {
 
 	// The race has been created, now start the countdown
 	// TODO - call the async function runCountdown
-	runCountdown().then(async () => {
-		const race = await createRace(store.player_id,store.track_id)
-		store.race_id = race.ID - 1;
-		startRace(store.race_id).then(() => {
-			runRace(store.race_id).then(res => {
-				console.log(res)
-			})
-		})
-	})
+	await runCountdown()
+	
+	await startRace(store.race_id)
+	
+	await runRace(store.race_id)
 
 	// TODO - call the async function startRace
 
@@ -119,8 +115,9 @@ async function runRace(raceID) {
 
 			async function updateRace(raceID) {
 
-				let res = getRace(raceID)
+				const res = await getRace()
 				console.log(res)
+
 				if (res.status == 'in-progress') {
 					renderAt('#leaderBoard', raceProgress(res.positions))
 				}
