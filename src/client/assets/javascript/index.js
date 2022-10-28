@@ -416,8 +416,6 @@ async function getRace(id) {
 }
 
 async function startRace(id) {
-	console.log('startRace function running')
-	console.log(id)
 	return fetch(`${SERVER}/api/races/${id}/start`, {
 		method: 'POST',
 		...defaultFetchOpts(),
@@ -429,12 +427,9 @@ async function accelerate(id) {
 	// POST request to `${SERVER}/api/races/${id}/accelerate`
 	// options parameter provided as defaultFetchOpts
 	// no body or datatype needed for this request
-	try {
-		const res = await fetch(`${SERVER}/api/races/${id}/accelerate`, defaultFetchOpts)
-		return res
-
-
-	} catch(err) {
-		console.log(err)
-	}
+	return fetch(`${SERVER}/api/races/${id}/accelerate`, {
+		method: 'POST',
+		...defaultFetchOpts(),
+	})
+	.catch(err => console.log(err))
 }
