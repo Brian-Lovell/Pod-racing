@@ -116,7 +116,7 @@ async function runRace() {
 			async function updateRace() {
 
 				const res = await getRace(store.race_id)
-				console.log('getRace res',res)
+				console.log('getRace res', res)
 
 				if (res.status == 'in-progress') {
 					renderAt('#leaderBoard', raceProgress(res.positions))
@@ -318,7 +318,9 @@ function resultsView(positions) {
 }
 
 function raceProgress(positions) {
+	console.log('positions', positions)
 	let userPlayer = positions.find(e => e.id === store.player_id)
+	console.log('userPlayer:', userPlayer)
 	userPlayer.driver_name += " (you)"
 
 	positions = positions.sort((a, b) => (a.segment > b.segment) ? -1 : 1)
