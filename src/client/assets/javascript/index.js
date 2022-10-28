@@ -85,7 +85,7 @@ async function handleCreateRace() {
 	const race = await createRace(store.player_id,store.track_id)
 	store.race_id = race.ID - 1;
 	
-	// console.log(store)
+	console.log(store)
 
 	// TODO - update the store with the race id
 	// For the API to work properly, the race id should be race id - 1
@@ -97,7 +97,7 @@ async function handleCreateRace() {
 	
 	await startRace(store.race_id)
 	
-	await runRace(store.race_id)
+	await runRace()
 
 	// TODO - call the async function startRace
 
@@ -106,17 +106,17 @@ async function handleCreateRace() {
 
 }
 
-async function runRace(raceID) {
-	console.log('runRace function running.  Race ID const',raceID)
+async function runRace() {
+	console.log('runRace function running.')
 	try {
 		return new Promise(resolve => {
 
-			const raceInterval = setInterval(updateRace(raceID),500)
+			const raceInterval = setInterval(updateRace(),500)
 
-			async function updateRace(raceID) {
+			async function updateRace() {
 
-				const res = await getRace()
-				console.log(res)
+				const res = await getRace(store.race_id)
+				console.log('getRace res',res)
 
 				if (res.status == 'in-progress') {
 					renderAt('#leaderBoard', raceProgress(res.positions))
@@ -392,7 +392,6 @@ async function getRacers() {
 			method: 'GET',
 		})
 		.then((res) => res.json())
-		console.log(res)
 		return res
 
 
